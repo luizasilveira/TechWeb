@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class DAO {
@@ -15,25 +14,26 @@ public class DAO {
 
 	public DAO() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/projeto1", "root", "lulu0147");
+			connection = DriverManager.getConnection(
+					"jdbc:mysql://localhost/projeto1?useTimezone=true&serverTimezone=UTC","root","lulu0147"); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public List<Clientes> getClientes() {
+	public List<Clients> getClientes() {
 
-		List<Clientes> pessoas = new ArrayList<Clientes>();
+		List<Clients> clients = new ArrayList<Clients>();
 		PreparedStatement stmt = null;
 		try {
-			stmt = connection.prepareStatement("SELECT * FROM cadastroClientes");
+			stmt = connection.prepareStatement("SELECT * FROM CadastroCliente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,15 +47,14 @@ public class DAO {
 		}
 		try {
 			while (rs.next()) {
-				Clientes cliente = new Clientes();
-				cliente.setId(rs.getInt("id"));
-				cliente.setName(rs.getString("name"));
-				cliente.setAdress(rs.getString("adress"));
-				cliente.setCelphone(rs.getString("celphone"));
-				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("birth"));
-				cliente.setBirth(data);
-				pessoas.add(cliente);
+				Clients client = new Clients();
+				client.setId(rs.getInt("id"));
+				client.setName(rs.getString("Nome"));
+				client.setBirth(rs.getString("Nascinmento"));
+				client.setCPF(rs.getString("CPF"));
+				client.setAdress(rs.getString("Endereço"));
+				client.setCelphone(rs.getString("Celular"));
+				clients.add(client);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -73,7 +72,77 @@ public class DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return pessoas;
+		return clients;
 
+	}
+	
+	public void adiciona(Clients client) {
+		String sql = "INSERT INTO CadastroCliente" +
+		"(Nome,Nascimento,CPF,Endereço,Celular) values(?,?,?,?,?)";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			stmt.setString(1,client.getName());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			stmt.setString(2, client.getBirth());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.setString(3,client.getCPF());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.setString(4,client.getAdress());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.setString(5,client.getCelphone());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+
+	public void close() {
+	
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

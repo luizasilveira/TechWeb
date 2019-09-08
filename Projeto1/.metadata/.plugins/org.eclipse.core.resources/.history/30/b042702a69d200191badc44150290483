@@ -1,0 +1,66 @@
+package techWebP1;
+
+
+
+public class Clients {
+	
+	private Integer id;
+	private String Nome;
+	private String birth;
+	private String celphone;
+	private String adress;
+	private String CPF;
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return Nome;
+	}
+
+	public void setName(String Nome) {
+		this.Nome = Nome;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public String getCelphone() {
+		return celphone;
+	}
+
+	public void setCelphone(String celphone) {
+		this.celphone = celphone;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+	
+	public String getCPF() {
+		
+		return CPF;
+	}
+
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
+	}
+
+	
+
+}

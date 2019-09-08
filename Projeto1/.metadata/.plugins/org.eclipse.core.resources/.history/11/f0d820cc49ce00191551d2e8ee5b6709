@@ -1,0 +1,11 @@
+package techWebP1;
+
+import java.util.Calendar;
+
+public class Clientes {
+	private Integer id;
+	private String name;
+	private Calendar nascimento;
+	private String telefone;
+	private String endereço;
+}

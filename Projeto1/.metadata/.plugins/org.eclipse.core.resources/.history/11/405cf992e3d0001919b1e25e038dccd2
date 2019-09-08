@@ -1,0 +1,70 @@
+package br.edu.insper;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import techWebP1.Clients;
+import techWebP1.DAO;
+
+/**
+ * Servlet implementation class AllClients
+ */
+@WebServlet("/AllClients")
+public class AllClients extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AllClients() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		DAO dao = new DAO();
+		List<Clients> clientes = dao.getClientes();
+		PrintWriter out = response.getWriter();
+		out.println("<html><body><table border='1'>");
+		out.println("<tr><td>ID</td><td>Nome</td>" +
+		 "<td>Nascimento</td><td>Altura</td></tr>");
+		for (Clients cliente : clientes) {
+		 out.println("<tr><td>" + ((Clients) clientes).getId() + "</td>");
+		 out.println("<td>" + ((Clients) clientes).getName() + "</td>");
+		 out.println("<td>" + ((Clients) clientes).getCPF() + "</td></tr>");
+		 out.println("<td>" + ((Clients) clientes).getBirth().getTime() + "</td>");
+		 out.println("<td>" + ((Clients) clientes).getAdress() + "</td></tr>");
+		 out.println("<td>" + ((Clients) clientes).getCelphone() + "</td></tr>");
+		}
+		out.println("</table></body></html>");
+
+		dao.close();
+		
+	}
+	
+
+}

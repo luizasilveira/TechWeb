@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HOME</title>
+</head>
+<body>
+<form action = "ClientRegister">
+nome: <input type = "text" name = "Nome" >
+<input type = "submit" value = "submit">
+
+
+
+</form>
+
+</body>
+</html>
