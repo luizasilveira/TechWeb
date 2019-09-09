@@ -43,11 +43,9 @@ public class AddClients extends HttpServlet {
 		cliente.setAdress(request.getParameter("endereço"));
 		cliente.setCelphone(request.getParameter("celular"));
 		dao.adiciona(cliente);
-		PrintWriter out = response.getWriter();
-		out.println("<html><body>");
-		out.println("adicionado " + cliente.getName());
-		out.println("</body></html>");
+
 		dao.close();
+		response.sendRedirect(request.getContextPath()+"/lista.jsp");
 	}
 
 }

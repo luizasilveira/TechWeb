@@ -34,39 +34,19 @@ public class DAO {
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement("SELECT * FROM CadastroCliente");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ResultSet rs = null;
-		try {
+			ResultSet rs = null;
 			rs = stmt.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			while (rs.next()) {
 				Clients client = new Clients();
 				client.setId(rs.getInt("id"));
 				client.setName(rs.getString("Nome"));
-				client.setBirth(rs.getString("Nascinmento"));
+				client.setBirth(rs.getString("Nascimento"));
 				client.setCPF(rs.getString("CPF"));
 				client.setAdress(rs.getString("Endereço"));
 				client.setCelphone(rs.getString("Celular"));
 				clients.add(client);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			rs.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,64 +56,99 @@ public class DAO {
 
 	}
 	
+	public List<Clients> ShowData(Integer id) {
+
+		List<Clients> clients = new ArrayList<Clients>();
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement("SELECT * FROM CadastroCliente WHERE id=?");
+			stmt.setLong(1, id);
+			ResultSet rs = null;
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Clients data = new Clients();
+				data.setId(rs.getInt("id"));
+				data.setName(rs.getString("Nome"));
+				data.setBirth(rs.getString("Nascimento"));
+				data.setCPF(rs.getString("CPF"));
+				data.setAdress(rs.getString("Endereço"));
+				data.setCelphone(rs.getString("Celular"));
+				clients.add(data);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clients;
+
+	}
+	
+	public void remove(Integer id) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement("DELETE FROM CadastroCliente WHERE id=?");
+			stmt.setLong(1, id);
+			stmt.execute();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+	
+	
 	public void adiciona(Clients client) {
-		String sql = "INSERT INTO CadastroCliente" +
-		"(Nome,Nascimento,CPF,Endereço,Celular) values(?,?,?,?,?)";
+		String sql = "INSERT INTO CadastroCliente" + "(Nome,Nascimento,CPF,Endereço,Celular) values(?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			stmt.setString(1,client.getName());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
+			stmt.setString(1, client.getName());
 			stmt.setString(2, client.getBirth());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			stmt.setString(3,client.getCPF());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			stmt.setString(4,client.getAdress());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			stmt.setString(5,client.getCelphone());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
+			stmt.setString(3, client.getCPF());
+			stmt.setString(4, client.getAdress());
+			stmt.setString(5, client.getCelphone());
 			stmt.execute();
+			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+
+	
+	
+	public void altera(Clients cliente) {
+		String sql = "UPDATE CadastroCliente SET " +
+		 "Nome=?, Nascimento=?, CPF=?,Endereço=?, Celular=? WHERE id=?";
+		PreparedStatement stmt = null;
 		try {
+			stmt = connection.prepareStatement(sql);
+		
+			stmt.setString(1, cliente.getName());
+		
+			stmt.setString(2, cliente.getBirth());
+		
+			stmt.setString(3, cliente.getCPF());
+		
+			stmt.setString(4, cliente.getAdress());
+		
+			stmt.setString(5, cliente.getCelphone());
+		
+			stmt.setInt(6, cliente.getId());
+		
+			stmt.execute();
+		
 			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		}
+	
+
 
 	public void close() {
 	
@@ -145,4 +160,6 @@ public class DAO {
 		}
 		
 	}
+	
+	
 }

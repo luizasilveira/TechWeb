@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style>
+body {
+	background-color: white;
+}
+</style>
+</head>
+<body>
+	<%@ page import="java.util.*,techWebP1.*"%>
+	<table class ="striped">
+	<thead>
+			<tr>
+			<th>ID</th>
+				<th>Nome</th>
+				<th>Nascimento</th>
+				<th>CPF</th>
+				<th>Endereço</th>
+				<th>Celular</th>
+			</tr>
+		</thead>
+
+		<%
+			DAO dao = new DAO();
+			List<Clients> clientes = dao.getClientes();
+			for (Clients cliente : clientes) {
+		%>
+		
+
+		<tbody>
+			<tr>
+				<td><%=cliente.getId()%></td>
+				<td><%=cliente.getName()%></td>
+				<td><%=cliente.getBirth()%></td>
+				<td><%=cliente.getCPF()%></td>
+				<td><%=cliente.getAdress()%></td>
+				<td><%=cliente.getCelphone()%></td>
+			</tr>
+
+
+			<%
+			}
+		%>
+		</tbody>
+	</table>
+
+</body>
+</html>

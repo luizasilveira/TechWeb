@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HOME</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+<style>
+body {
+	background-color: pink lighten-5;
+}
+</style>
+</head>
+
+<body>
+	<form action="./AddClients" method="post">
+		<div class="card-panel z-depth-5">
+		<h5 class="center">Novo cliente</h5>
+			<div class="row">
+				<div class="col s6">
+					
+					<!--<p class="center">Join to our community now !</p>-->
+
+
+					<div class="input-field">
+						<input type="text" name="nome"> <label>nome</label>
+					</div>
+
+					<!--<i class="material-icons prefix">account_circle</i>-->
+
+
+
+					<!--<div class="input-field">
+                    <i class="material-icons prefix">email</i
+                    <input type="email" name="email" class="validate">
+                    <label> email</label>
+                  </div>-->
+
+					<div class="input-field">
+						<!--<i class="material-icons prefix">lock</i>-->
+						<input type="text" name="nascimento"> <label>Data
+							de Nascimento</label>
+					</div>
+
+					<div class="input-field">
+						<!--<i class="material-icons prefix">vpn_key</i>-->
+						<input type="text" name="CPF"> <label>CPF</label>
+					</div>
+				</div>
+
+				<div class="col s6">
+					<div class="input-field">
+						<!--<i class="material-icons prefix">vpn_key</i>-->
+						<input type="text" name="endereço"> <label>endereço</label>
+					</div>
+
+					<div class="input-field">
+						<!--<i class="material-icons prefix">vpn_key</i>-->
+						<input type="text" name="celular"> <label>Celular</label>
+					</div>
+				</div>
+
+
+				<!--<p class="right">Already have an account? <a href="#login" class="modal-trigger">login</a></p>-->
+				<input type="submit" name="submit" value="Adicionar"
+					class="btn left col s12">
+
+				<div class="clearfix"></div>
+
+			</div>
+		</div>
+	</form>
+
+
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+
+
+
+</body>
+</html>
