@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.insper.Loja;
+
 public class DAO {
 
 	private Connection connection = null;
@@ -28,13 +30,14 @@ public class DAO {
 		}
 	}
 
-	public List<Clients> getClientes() {
+	public List<Clients> getClientes(Integer lojaid) {
 
 		List<Clients> clients = new ArrayList<Clients>();
 		PreparedStatement stmt = null;
 		try {
-			stmt = connection.prepareStatement("SELECT * FROM CadastroCliente");
+			stmt = connection.prepareStatement("SELECT * FROM CadastroCliente where lojaid=?");
 			ResultSet rs = null;
+			stmt.setInt(1, lojaid);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Clients client = new Clients();
@@ -101,7 +104,7 @@ public class DAO {
 	
 	
 	public void adiciona(Clients client) {
-		String sql = "INSERT INTO CadastroCliente" + "(Nome,Nascimento,CPF,Endereço,Celular) values(?,?,?,?,?)";
+		String sql = "INSERT INTO CadastroCliente" + "(Nome,Nascimento,CPF,Endereço,Celular, lojaid) values(?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -110,6 +113,7 @@ public class DAO {
 			stmt.setString(3, client.getCPF());
 			stmt.setString(4, client.getAdress());
 			stmt.setString(5, client.getCelphone());
+			stmt.setInt(6, client.getUserid());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -147,6 +151,82 @@ public class DAO {
 			e.printStackTrace();
 		}
 		}
+	
+	
+	
+	
+	public Loja checkLogin(String login , String senha){
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.
+					prepareStatement("SELECT * FROM login Where login=? AND senha=?");
+			
+			stmt.setString(1,login);
+			stmt.setString(2,senha);
+			ResultSet rs = null;
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+			Loja User = new Loja();
+			User.setName(rs.getString("login"));
+			User.setPassword(rs.getString("senha")); 
+			return User;
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int lojaId(String login , String senha){
+		int id = 0;
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement("SELECT id FROM login WHERE "
+					+ "login = ? AND senha = ?");
+			stmt.setString(1,login);
+			stmt.setString(2,senha);
+			ResultSet rs = null;
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				id = rs.getInt("id");
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+		
+		
+		
+	}
+	
+	
+	
+	
+	public void adicionaLoja(Loja loja) {
+		String sql = "INSERT INTO login" +
+		"(login,senha,confirmarSenha) values(?,?,?)";
+		
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+			stmt.setString(1, loja.getName());
+			stmt.setString(2, loja.getPassword());
+			stmt.setString(3, loja.getConfirmPassword());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 
 

@@ -10,6 +10,7 @@ public class Clients {
 	private String celphone;
 	private String adress;
 	private String CPF;
+	private Integer userid;
 	
 
 	public Integer getId() {
@@ -59,6 +60,14 @@ public class Clients {
 
 	public void setCPF(String CPF) {
 		this.CPF = CPF;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
 	

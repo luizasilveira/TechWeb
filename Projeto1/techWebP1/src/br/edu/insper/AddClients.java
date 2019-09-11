@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import techWebP1.Clients;
 import techWebP1.DAO;
@@ -42,9 +43,15 @@ public class AddClients extends HttpServlet {
 		cliente.setCPF(request.getParameter("CPF"));
 		cliente.setAdress(request.getParameter("endereço"));
 		cliente.setCelphone(request.getParameter("celular"));
+		
+		HttpSession session = request.getSession(false);
+		int id = (int) session.getAttribute("lojaid");
+		cliente.setUserid(id);
+		
 		dao.adiciona(cliente);
 
 		dao.close();
+		
 		response.sendRedirect(request.getContextPath()+"/lista.jsp");
 	}
 

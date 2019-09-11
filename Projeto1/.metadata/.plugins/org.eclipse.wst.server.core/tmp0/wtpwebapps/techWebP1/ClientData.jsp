@@ -10,7 +10,6 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<!--Import materialize.css-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -18,6 +17,7 @@
 
 <style>
 body {
+	background-color: lightblue;
 	width: 70%;
 	margin: auto;
 	padding: 50px;
@@ -27,26 +27,44 @@ body {
 
 </head>
 <body>
-<form action="./UpdateClient" method="post">
-	<div class="card-panel z-depth-5">
-		<h5 class="center">Dados do cliente</h5>
-		<%@ page import="java.util.*,techWebP1.*"%>
-		
+
+
+
+	<nav>
+		<div class="nav-wrapper  grey darken-4 ">
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li><a href="login.jsp">Login</a></li>
+				<li><a href="add.html">Adicionar</a></li>
+				<li><a href="lista.jsp">Clientes</a></li>
+
+			</ul>
+		</div>
+	</nav>
+	<form action="./UpdateClient" method="post">
+		<div class="card-panel z-depth-5">
+			<h5 class="center">Dados do cliente</h5>
+			<%@ page import="java.util.*,techWebP1.*"%>
+
+			<table class="centered">
 
 
 
 
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Nascimento</th>
+						<th>CPF</th>
+						<th>Endereço</th>
+						<th>Celular</th>
+					</tr>
+				</thead>
 
-			<!-- <thead>
-				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-					<th>Nascimento</th>
-					<th>CPF</th>
-					<th>Endereço</th>
-					<th>Celular</th>
-				</tr>
-			</thead> -->
+
+			</table>
+
+
 
 			<%
 				Integer ID = Integer.valueOf(request.getParameter("id"));
@@ -55,10 +73,11 @@ body {
 				for (Clients data : clientes) {
 			%>
 
-			<!-- 
-			<tbody>
-				<tr> -->
+
+
 			<div class="row">
+
+
 				<div class="col s2">
 					<div class="input-field">
 						<input type="text" name="id" value="<%=data.getId()%>">
@@ -73,8 +92,8 @@ body {
 
 					</div>
 				</div>
-				
-				
+
+
 				<div class="col s2">
 
 					<div class="input-field">
@@ -82,8 +101,8 @@ body {
 
 					</div>
 				</div>
-				
-				
+
+
 				<div class="col s2">
 
 					<div class="input-field">
@@ -101,8 +120,8 @@ body {
 
 					</div>
 				</div>
-				
-				
+
+
 
 				<div class="col s2">
 
@@ -112,30 +131,18 @@ body {
 
 					</div>
 				</div>
-				
+
 				<input type="submit" name="submit" value="Alterar"
-					class="btn left col s12">
+					class="btn left col s12 blue darken-1">
 
 			</div>
-		
 
 
+			<%
+				}
+			%>
 
-
-
-
-
-
-
-
-
-
-
-
-
-		<% } %>
-
-	</div>
+		</div>
 	</form>
 
 
