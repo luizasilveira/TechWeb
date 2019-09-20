@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\Luiza Silveira\Desktop\4 semestre\Repositorios\TechWeb\Projeto1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Luiza Silveira\Desktop\4 semestre\Repositorios\TechWeb\Projeto1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\techWebP1" path="/techWebP1" reloadable="true" source="org.eclipse.jst.jee.server:techWebP1"/></Host>
+      <Context docBase="C:\Users\Luiza Silveira\Desktop\4 semestre\Repositorios\TechWeb\Projeto1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Luiza Silveira\Desktop\4 semestre\Repositorios\TechWeb\Projeto1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Projeto1A" path="/Projeto1A" reloadable="true" source="org.eclipse.jst.jee.server:Projeto1A"/><Context docBase="C:\Users\Luiza Silveira\Desktop\4 semestre\Repositorios\TechWeb\Projeto1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Projeto1B" path="/Projeto1B" reloadable="true" source="org.eclipse.jst.jee.server:Projeto1B"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -1,10 +1,5 @@
 INDEX VERSION 1.4+C:\Users\Luiza Silveira\Desktop\4 semestre\Repositorios\TechWeb\Projeto1\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-68015638.index
-729126733.index
-232963891.index
-4158211258.index
-729126733.index
-871346723.index
-309825227.index
-3610136925.index
-1428169796.index
+623485888.index
+495470877.index
+2694819326.index
+966196292.index
