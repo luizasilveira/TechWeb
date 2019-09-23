@@ -29,6 +29,7 @@ public class DAO {
 					"jdbc:mysql://localhost/projeto1?useTimezone=true&serverTimezone=UTC","root","lulu0147"); 
 //			connection = DriverManager.getConnection(
 //			"url","user","password"); 
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
