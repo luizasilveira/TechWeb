@@ -215,7 +215,14 @@ public class DAO {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	public void adicionaLoja(Loja loja) {
+		System.out.println("teste");
 		String sql = "INSERT INTO login" +
 		"(login,senha,confirmarSenha) values(?,?,?)";
 		
