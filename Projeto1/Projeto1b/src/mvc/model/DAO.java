@@ -26,7 +26,7 @@ public class DAO {
 		}
 		try {
 			connection = DriverManager.getConnection(
-					"url?useTimezone=true&serverTimezone=UTC","user","password"); 
+					"url","user","password"); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
