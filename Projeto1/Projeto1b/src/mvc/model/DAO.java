@@ -16,8 +16,11 @@ public class DAO {
 
 	public DAO() {
 		String url = System.getenv("mysql_url");
+		System.out.println(url);
 		String user = System.getenv("mysql_user");
+		System.out.println(user);
 		String password = System.getenv("mysql_password");
+		System.out.println(password);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
