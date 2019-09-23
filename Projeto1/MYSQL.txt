@@ -1,8 +1,8 @@
 Database: projeto1
 
 CREATE TABLE cadastrocliente(id int(11) not null auto_increment , Nome varchar(32) not null, Nascimento varchar(18) , 
-CPF varchar(18), Endereço varchar(100) , Celular varchar(15) not null, lojaid int(11), primarykey(id));
+CPF varchar(18), EndereÃ§o varchar(100) , Celular varchar(15) not null, lojaid int(11), PRIMARY KEY(id));
 
 
 CREATE TABLE login(id int(11) not null auto_increment , login varchar(32) not null, 
-senha varchar(32) not null, confirmarsenha varchar(32) not null, primarykey(id));
+senha varchar(32) not null, confirmarsenha varchar(32) not null, PRIMARY KEY(id));
