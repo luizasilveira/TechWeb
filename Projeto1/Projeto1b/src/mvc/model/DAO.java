@@ -16,8 +16,11 @@ public class DAO {
 
 	public DAO() {
 		String url = System.getenv("mysql_url");
+		System.out.println(url);
 		String user = System.getenv("mysql_user");
+		System.out.println(user);
 		String password = System.getenv("mysql_password");
+		System.out.println(password);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -27,8 +30,7 @@ public class DAO {
 		try {
 //			connection = DriverManager.getConnection(
 //					"jdbc:mysql://localhost/projeto1?useTimezone=true&serverTimezone=UTC","root","lulu0147"); 
-			connection = DriverManager.getConnection(
-			"url","user","password"); 
+			connection = DriverManager.getConnection("url","user","password"); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -221,6 +223,7 @@ public class DAO {
 		
 		PreparedStatement stmt = null;
 		try {
+			System.out.println("teste");
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, loja.getName());
 			stmt.setString(2, loja.getPassword());
